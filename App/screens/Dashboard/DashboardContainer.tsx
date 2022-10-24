@@ -28,8 +28,14 @@ const DashboardContainer = (props: Props) =>  {
 
     const onRestart = () => {
         steps.current = 0
-        props.restart()
     }
+
+    useFocusEffect(
+        useCallback(() => {
+            if (props.isRestarted)
+                onRestart()
+        }, [props.isRestarted])
+    )
 
     useFocusEffect(
         useCallback(() => {
@@ -41,7 +47,7 @@ const DashboardContainer = (props: Props) =>  {
                     `You win this game by ${steps.current} steps`,
                     [ {
                         text: `Try another round`,
-                        onPress: () => onRestart()
+                        onPress: () => props.restart()
                     }],
                     
                 );
@@ -60,6 +66,7 @@ const DashboardContainer = (props: Props) =>  {
 
 const mapStateToProps = (state: RootState) => ({
     cards: DashboardSelectors.cards(state),
+    isRestarted: DashboardSelectors.isRestarted(state),
 })
 const mapDispatchToProps = (dispatch: RootDispatch) => ({
     restart: () => dispatch(DashboardActions.restart()),

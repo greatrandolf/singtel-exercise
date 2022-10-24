@@ -5,6 +5,7 @@ import { Card, CardFlip, Error } from '../../models'
 
 export const DashboardSelectors = {
   isLoading : (state: RootState) => state.dashboard.loading,
+  isRestarted: (state: RootState) => state.dashboard.isRestarted,
   cards: (state: RootState) => state.dashboard.cards,
   flipCards: (state: RootState) => state.dashboard.flipCards,
 }

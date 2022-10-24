@@ -4,12 +4,14 @@ import { CardFlip, Card, Error } from '../../models'
 
 type DashboardState = {
   loading: boolean
+  isRestarted: boolean
   cards: Card[]
   flipCards: CardFlip[]
 }
 
 const INITIAL_STATE: DashboardState = {
   loading: false,
+  isRestarted: false,
   cards: [],
   flipCards: [],
 }
@@ -46,13 +48,13 @@ const getGenerateRandomCardPairs = () => {
   return array
 }
 
-const setLoading = (state: DashboardState) => ({ 
-  ...state, loading: true, error: null, 
+const setRestarted = (state: DashboardState) => ({ 
+  ...state, loading: false, error: null, isRestarted: true
 })
 
 const generateCardPairs = (state: DashboardState) => {
   const cards: Card[] = getGenerateRandomCardPairs()
-  return ({ ...state, loading: false, error: null, cards })
+  return ({ ...state, loading: false, error: null, isRestarted: false, cards })
 }
 
 const saveCards = (state: DashboardState, cards: Card[]) => ({ 
@@ -68,6 +70,8 @@ const reducer: Reducer<DashboardState, DashboardAction> = (
   action
 ) => {
   switch (action.type) {
+    case DashboardTypes.RESTART:
+      return setRestarted(state)
     case DashboardTypes.GENERATE_CARD_PAIRS:
       return generateCardPairs(state)
     case DashboardTypes.SAVE_CARDS:
