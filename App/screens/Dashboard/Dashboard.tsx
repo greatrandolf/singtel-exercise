@@ -22,7 +22,7 @@ type Props = {
   onFlipChange: (value: string) => void,
   onFlipCallBack: (card: Card, callback: Function) => void,
 
-  steps: MutableRefObject<Number>,
+  steps: Number,
   cards: Card[],
 }
 
@@ -38,7 +38,7 @@ const Dashboard = (props: Props) => {
                                   style={styles.hamburgerImage} />
                           )} />
                 )}
-                title={`STEPS: ${props.steps.current}`}
+                title={`STEPS: ${props.steps}`}
             />
     )
     

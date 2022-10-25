@@ -59,7 +59,7 @@ const DashboardContainer = (props: Props) =>  {
         <Dashboard  toggleDrawer={toggleDrawer}
                     onFlipChange={onFlipChange}
                     onFlipCallBack={onFlipCallBack}
-                    steps={steps}
+                    steps={steps.current}
                      { ...props } />
     )
 }
