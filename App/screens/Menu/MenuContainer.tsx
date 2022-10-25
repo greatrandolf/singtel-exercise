@@ -12,8 +12,7 @@ const MenuContainer = (props: Props) =>  {
     const navigation = useNavigation()
 
     const onNavigateMenuItem = (item: string) => {
-        if(Platform.OS !== 'ios')
-            navigation.dispatch(DrawerActions.toggleDrawer());
+        navigation.dispatch(DrawerActions.toggleDrawer());
             
         setTimeout(() => {
             if (item === 'Profile')
